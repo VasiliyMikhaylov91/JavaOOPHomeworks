@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class Human {
     private String name;
-    private  ArrayList<Human> parents;
-    private  ArrayList<Human> marrieds;
+    private ArrayList<Human> parents;
+    private ArrayList<Human> marrieds;
+    private ArrayList<Human> children;
     private String gender;
 
-    public Human (String name, ArrayList<Human> parents,  ArrayList<Human> marrieds, String gender) {
+    public Human (String name, String gender) {
         this.name = name;
-        this.parents = parents;
-        this.marrieds = marrieds;
         this.gender = gender;
     }
 
@@ -27,7 +26,28 @@ public class Human {
         return marrieds;
     }
 
-    public String getGender() {
-        return gender;
+    public ArrayList<Human> getChildren() { return children; }
+
+    public String getGender() { return gender; }
+
+    public void addParent (Human human) {
+        parents.add(human);
+        if (!human.getChildren().contains(this)) {
+            human.addChild(this);
+        }
+    }
+
+    public void addMarried (Human human) {
+        marrieds.add(human);
+        if (!human.getMarrieds().contains(this)) {
+            human.addMarried(this);
+        }
+    }
+
+    public void addChild (Human human) {
+        children.add(human);
+        if (!human.getParents().contains(this)) {
+            human.addParent(this);
+        }
     }
 }

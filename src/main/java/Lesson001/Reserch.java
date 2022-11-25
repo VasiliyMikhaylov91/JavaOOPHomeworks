@@ -1,15 +1,16 @@
 package Lesson001;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Reserch {
     private Human human;
-    private ArrayList<Human> geoTree;
+    private HashMap<Integer, Human> geoTree;
     private ArrayList<Human> result = new ArrayList<>();
     private boolean block = false;
 
-    public Reserch (Human human, ArrayList<Human> geoTree) {
+    public Reserch (Human human, HashMap<Integer, Human> geoTree) {
         this.human = human;
         this.geoTree = geoTree;
     }
@@ -18,6 +19,73 @@ public class Reserch {
         if (!block) {
             getOrderParents(human, order, gender);
             block = true;
+        }
+    }
+
+    public void getMarrieds(int order, String gender) {
+        if (!block) {
+            ArrayList<Human> marrieds = human.getMarrieds();
+            if (order == 0) {
+                if (gender.equals("all")) {
+                    result.addAll(marrieds);
+                } else {
+                    for (Human married : marrieds) {
+                        if (married.getGender().equals(gender)) {
+                            result.add(married);
+                        }
+                    }
+                }
+
+            } else if (order == 1) {
+                for (Human married : marrieds) {
+                    ArrayList<Human> marriedParents = married.getParents();
+                    if (gender.equals("all")) {
+                        result.addAll(marriedParents);
+                    } else {
+                        for (Human marriedParent: marriedParents) {
+                            if (marriedParent.getGender().equals(gender)) {
+                                result.add(marriedParent);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void getChildren (int order, String gender) {
+        if (!block) {
+            getOrderChildren(human, order, gender);
+            block = true;
+        }
+    }
+
+//    public void getSistersOrBrothers(int order, String gender) {
+//        if (!block) {
+//            getOrderSistersOrBrothers(human, order, gender);
+//            block = true;
+//        }
+//    }
+//
+//    private void getOrderSistersOrBrothers(Human newHuman, int newOrder, String gender) {
+//
+//    }
+
+    private void getOrderChildren (Human newHuman, int newOrder, String gender) {
+        ArrayList<Human> children = newHuman.getChildren();
+        if (newOrder == 0) {
+            if(gender.equals("all")) {
+                result.addAll(children);
+            } else {
+                for (Human child : children) {
+                    if (child.getGender().equals(gender)) {
+                        result.add(child);
+                    }
+                }
+            }
+        }
+        for (Human child: children) {
+            getOrderParents(child, newOrder - 1, gender);
         }
     }
 
