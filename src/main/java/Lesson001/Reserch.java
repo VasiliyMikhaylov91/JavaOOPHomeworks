@@ -2,7 +2,6 @@ package Lesson001;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Reserch {
     private Human human;
@@ -60,16 +59,6 @@ public class Reserch {
         }
     }
 
-//    public void getSistersOrBrothers(int order, String gender) {
-//        if (!block) {
-//            getOrderSistersOrBrothers(human, order, gender);
-//            block = true;
-//        }
-//    }
-//
-//    private void getOrderSistersOrBrothers(Human newHuman, int newOrder, String gender) {
-//
-//    }
 
     private void getOrderChildren (Human newHuman, int newOrder, String gender) {
         ArrayList<Human> children = newHuman.getChildren();
@@ -83,9 +72,10 @@ public class Reserch {
                     }
                 }
             }
+            return;
         }
         for (Human child: children) {
-            getOrderParents(child, newOrder - 1, gender);
+            getOrderChildren(child, newOrder - 1, gender);
         }
     }
 
@@ -101,6 +91,7 @@ public class Reserch {
                     }
                 }
             }
+            return;
         }
         for (Human parent: parents) {
             getOrderParents(parent, newOrder - 1, gender);

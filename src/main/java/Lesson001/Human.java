@@ -4,10 +4,15 @@ import java.util.ArrayList;
 
 public class Human {
     private String name;
-    private ArrayList<Human> parents;
-    private ArrayList<Human> marrieds;
-    private ArrayList<Human> children;
+    private ArrayList<Human> parents = new ArrayList<>();
+    private ArrayList<Human> marrieds = new ArrayList<>();
+    private ArrayList<Human> children = new ArrayList<>();
     private String gender;
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
     public Human (String name, String gender) {
         this.name = name;
