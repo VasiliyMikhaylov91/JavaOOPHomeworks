@@ -22,30 +22,11 @@ public class Research {
         if (!block) {
             ArrayList<Human> marrieds = human.getMarrieds();
             if (order == 0) {
-                if (gender.equals("all")) {
-                    result.addAll(marrieds);
-                } else {
-                    for (Human married : marrieds) {
-                        if ("male".equals(gender) && married instanceof Man ||
-                                "female".equals(gender) && married instanceof Woman) {
-                            result.add(married);
-                        }
-                    }
-                }
-
+                selectGender(gender, marrieds);
             } else if (order == 1) {
                 for (Human married : marrieds) {
                     ArrayList<Human> marriedParents = married.getParents();
-                    if (gender.equals("all")) {
-                        result.addAll(marriedParents);
-                    } else {
-                        for (Human marriedParent : marriedParents) {
-                            if ("male".equals(gender) && marriedParent instanceof Man ||
-                                    "female".equals(gender) && marriedParent instanceof Woman) {
-                                result.add(marriedParent);
-                            }
-                        }
-                    }
+                    selectGender(gender, marriedParents);
                 }
             }
         }
@@ -58,20 +39,10 @@ public class Research {
         }
     }
 
-
     private void getOrderChildren(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> children = newHuman.getChildren();
         if (newOrder == 0) {
-            if (gender.equals("all")) {
-                result.addAll(children);
-            } else {
-                for (Human child : children) {
-                    if ("male".equals(gender) && child instanceof Man ||
-                            "female".equals(gender) && child instanceof Woman) {
-                        result.add(child);
-                    }
-                }
-            }
+            selectGender(gender, children);
             return;
         }
         for (Human child : children) {
@@ -82,20 +53,24 @@ public class Research {
     private void getOrderParents(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> parents = newHuman.getParents();
         if (newOrder == 0) {
-            if (gender.equals("all")) {
-                result.addAll(parents);
-            } else {
-                for (Human parent : parents) {
-                    if ("male".equals(gender) && parent instanceof Man ||
-                            "female".equals(gender) && parent instanceof Woman) {
-                        result.add(parent);
-                    }
-                }
-            }
+            selectGender(gender, parents);
             return;
         }
         for (Human parent : parents) {
             getOrderParents(parent, newOrder - 1, gender);
+        }
+    }
+
+    private void selectGender(String gender, ArrayList<Human> humans) {
+        if (gender.equals("all")) {
+            result.addAll(humans);
+        } else {
+            for (Human parent : humans) {
+                if ("male".equals(gender) && parent instanceof Man ||
+                        "female".equals(gender) && parent instanceof Woman) {
+                    result.add(parent);
+                }
+            }
         }
     }
 
