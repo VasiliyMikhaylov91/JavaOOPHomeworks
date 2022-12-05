@@ -12,10 +12,10 @@ public class Waves {
         this.field = field;
         field[start.getY()][start.getX()] = 1;
         queue.add(start);
-        spreadWaves(queue.peek());
+        spreadWaves();
     }
 
-    private void spreadWaves(Point prevPoint) {
+    private void spreadWaves() {
         if (!queue.isEmpty()) {
             Point point = queue.poll();
             if (field[point.getY() - 1][point.getX()] == 0) {
@@ -34,7 +34,7 @@ public class Waves {
                 field[point.getY()][point.getX() - 1] = field[point.getY()][point.getX()] + 1;
                 queue.addLast(new Point(point.getX() - 1, point.getY()));
             }
-            spreadWaves(queue.peek());
+            spreadWaves();
         }
     }
 
