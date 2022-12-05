@@ -19,7 +19,7 @@ public class Point {
 
     @Override
     public String toString() {
-        return String.format("x = %i y = %i", x, y);
+        return String.format("[%d, %d]", x, y);
     }
 
 }
