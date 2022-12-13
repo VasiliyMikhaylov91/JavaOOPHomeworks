@@ -10,13 +10,13 @@ public class Output {
     }
 
     static void printGeoTree(HashMap geoTree) {
-        for (Object entry: geoTree.entrySet()) {
+        for (Object entry : geoTree.entrySet()) {
             System.out.println(entry);
         }
     }
 
     static void printHumanList(ArrayList<Human> input) {
-        for (Human human: input) {
+        for (Human human : input) {
             System.out.println(human.getName());
         }
     }

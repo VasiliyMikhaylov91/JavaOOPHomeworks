@@ -12,7 +12,7 @@ public class Research {
         this.human = human;
     }
 
-    public  void getParents(int order, String gender) {
+    public void getParents(int order, String gender) {
         if (!block) {
             getOrderParents(human, order, gender);
             block = true;
@@ -39,7 +39,7 @@ public class Research {
                     if (gender.equals("all")) {
                         result.addAll(marriedParents);
                     } else {
-                        for (Human marriedParent: marriedParents) {
+                        for (Human marriedParent : marriedParents) {
                             if (marriedParent.getGender().equals(gender)) {
                                 result.add(marriedParent);
                             }
@@ -50,7 +50,7 @@ public class Research {
         }
     }
 
-    public void getChildren (int order, String gender) {
+    public void getChildren(int order, String gender) {
         if (!block) {
             getOrderChildren(human, order, gender);
             block = true;
@@ -58,10 +58,10 @@ public class Research {
     }
 
 
-    private void getOrderChildren (Human newHuman, int newOrder, String gender) {
+    private void getOrderChildren(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> children = newHuman.getChildren();
         if (newOrder == 0) {
-            if(gender.equals("all")) {
+            if (gender.equals("all")) {
                 result.addAll(children);
             } else {
                 for (Human child : children) {
@@ -72,7 +72,7 @@ public class Research {
             }
             return;
         }
-        for (Human child: children) {
+        for (Human child : children) {
             getOrderChildren(child, newOrder - 1, gender);
         }
     }
@@ -80,7 +80,7 @@ public class Research {
     private void getOrderParents(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> parents = newHuman.getParents();
         if (newOrder == 0) {
-            if(gender.equals("all")) {
+            if (gender.equals("all")) {
                 result.addAll(parents);
             } else {
                 for (Human parent : parents) {
@@ -91,7 +91,7 @@ public class Research {
             }
             return;
         }
-        for (Human parent: parents) {
+        for (Human parent : parents) {
             getOrderParents(parent, newOrder - 1, gender);
         }
     }

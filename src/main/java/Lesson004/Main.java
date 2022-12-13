@@ -7,7 +7,7 @@ public class Main {
         fg.addStart(new Point(5, 5));
         Waves ws = new Waves(field, fg.getStart());
         fg.addExit(new Point(8, 1));
-        fg.addExit(new Point(1,7));
+        fg.addExit(new Point(1, 7));
         System.out.println(PrintField.print(ws.getField()));
         System.out.println(ws.getPath(fg.getExits()));
     }

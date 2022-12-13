@@ -9,12 +9,12 @@ public class Reserch {
     private ArrayList<Human> result = new ArrayList<>();
     private boolean block = false;
 
-    public Reserch (Human human, HashMap<Integer, Human> geoTree) {
+    public Reserch(Human human, HashMap<Integer, Human> geoTree) {
         this.human = human;
         this.geoTree = geoTree;
     }
 
-    public  void getParents(int order, String gender) {
+    public void getParents(int order, String gender) {
         if (!block) {
             getOrderParents(human, order, gender);
             block = true;
@@ -41,7 +41,7 @@ public class Reserch {
                     if (gender.equals("all")) {
                         result.addAll(marriedParents);
                     } else {
-                        for (Human marriedParent: marriedParents) {
+                        for (Human marriedParent : marriedParents) {
                             if (marriedParent.getGender().equals(gender)) {
                                 result.add(marriedParent);
                             }
@@ -52,7 +52,7 @@ public class Reserch {
         }
     }
 
-    public void getChildren (int order, String gender) {
+    public void getChildren(int order, String gender) {
         if (!block) {
             getOrderChildren(human, order, gender);
             block = true;
@@ -60,10 +60,10 @@ public class Reserch {
     }
 
 
-    private void getOrderChildren (Human newHuman, int newOrder, String gender) {
+    private void getOrderChildren(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> children = newHuman.getChildren();
         if (newOrder == 0) {
-            if(gender.equals("all")) {
+            if (gender.equals("all")) {
                 result.addAll(children);
             } else {
                 for (Human child : children) {
@@ -74,7 +74,7 @@ public class Reserch {
             }
             return;
         }
-        for (Human child: children) {
+        for (Human child : children) {
             getOrderChildren(child, newOrder - 1, gender);
         }
     }
@@ -82,7 +82,7 @@ public class Reserch {
     private void getOrderParents(Human newHuman, int newOrder, String gender) {
         ArrayList<Human> parents = newHuman.getParents();
         if (newOrder == 0) {
-            if(gender.equals("all")) {
+            if (gender.equals("all")) {
                 result.addAll(parents);
             } else {
                 for (Human parent : parents) {
@@ -93,7 +93,7 @@ public class Reserch {
             }
             return;
         }
-        for (Human parent: parents) {
+        for (Human parent : parents) {
             getOrderParents(parent, newOrder - 1, gender);
         }
     }
