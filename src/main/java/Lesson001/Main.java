@@ -50,7 +50,7 @@ public class Main {
         geoTree.get(9).addParent(geoTree.get(3));
         geoTree.get(9).addParent(geoTree.get(6));
         Reserch res4 = new Reserch(geoTree.get(7), geoTree);
-        res4.getParents(1,"all");
+        res4.getParents(1, "all");
         Output.printHumanList(res4.getResult());
         System.out.println(" ");
         Reserch res5 = new Reserch(geoTree.get(1), geoTree);

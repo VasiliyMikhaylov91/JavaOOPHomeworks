@@ -51,7 +51,7 @@ public class Main {
         gt.get(9).addParent(gt.get(3));
         gt.get(9).addParent(gt.get(6));
         Research res4 = new Research(gt.get(7));
-        res4.getParents(1,"all");
+        res4.getParents(1, "all");
         pr.printHumanList(res4.getResult());
         System.out.println(" ");
         Research res5 = new Research(gt.get(1));
