@@ -2,14 +2,15 @@ package Lesson006;
 
 import Lesson006.Chats.GroupChat;
 import Lesson006.Messages.Message;
+import Lesson006.Users.Gender;
 import Lesson006.Users.UserGenerator;
 
 public class Program {
     public static void main(String[] args) {
         UserGenerator ug = new UserGenerator();
-        ug.addUser("Godrick");
-        ug.addUser("Silvia");
-        ug.addUser("Frank");
+        ug.addUser("Godrick", "Ivan Ivanov", new Gender(1));
+        ug.addUser("Silvia", null, new Gender(2));
+        ug.addUser("Frank", "Petr Petrov");
         System.out.println(ug);
         GroupChat chat = new GroupChat(ug.getUser(1), false);
         chat.addUser(ug.getUser(2));

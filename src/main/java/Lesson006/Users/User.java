@@ -68,6 +68,13 @@ public class User {
         return ID;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getGender() {
+        return gender.toString();
+    }
 
     @Override
     public String toString() {
