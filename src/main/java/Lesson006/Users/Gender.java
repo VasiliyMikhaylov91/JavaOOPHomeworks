@@ -13,7 +13,8 @@ public class Gender {
         gender = genders.get(genderID);
     }
 
-    public String getGender() {
+    @Override
+    public String toString() {
         return gender;
     }
 }

@@ -16,7 +16,7 @@ public class User {
         this.ID = builder.ID;
         this.nickname = builder.nickname;
         this.fullName = builder.fullName;
-        this.fullName = builder.gender;
+        this.gender = builder.gender;
     }
 
     public static class Builder {
@@ -42,12 +42,22 @@ public class User {
         }
 
         public User build() {
-            if (fullName = )
+            if (fullName == null) {
+                fullName = "Not specified";
+            }
+            if (gender == null) {
+                gender = new Gender(0);
+            }
+            return new User(this);
         }
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public void addChat(Chat chat) {
@@ -57,6 +67,7 @@ public class User {
     public Integer getID() {
         return ID;
     }
+
 
     @Override
     public String toString() {
